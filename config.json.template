@@ -1,0 +1,7 @@
+{
+    "airvantageUrl" : "https://na.airvantage.net",
+    "credentials" : {
+        "stoveId" : "YourSTOVEID",
+        "stovePwd" : "YourPassword"
+    }
+}
