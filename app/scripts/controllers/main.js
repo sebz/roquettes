@@ -52,7 +52,7 @@ angular.module('roquettesApp')
         restrict : 'E',
         replace : true,
         require : 'ng-model',
-        templateUrl: 'templates/datetimepicker.html',
+        templateUrl: 'partials/datetimepicker.html',
         link : function (scope, element, attrs, ngModelCtrl) {
             // $(function(){
                 element.datetimepicker({
