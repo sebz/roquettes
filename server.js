@@ -52,6 +52,7 @@ app.post('/postData', function(req, res, next){
 
 // Angular Routes
 app.get('/partials/*', controllers.partials);
+app.get('/templates/*', controllers.partials);
 app.get('/*', controllers.index);
 
 // Start server
