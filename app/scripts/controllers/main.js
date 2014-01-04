@@ -4,48 +4,67 @@ angular.module('roquettesApp')
   .controller('MainCtrl', function ($scope, $http) {
 
     var postUrl = '/postData';
-    $scope.loaded = function() {
+    var buildEvent = function() {
+        var result = {
+            timestamp : moment().valueOf(),
+            value : '1'
+        };
+        if ($scope.forceDate) {
+            result.timestamp = $scope.forceDate.valueOf();
+        }
+
+        return result;
+    };
+    $scope.loaded = function($event) {
+        jQuery($event.target).button('loading');
         var data = [{
-            'stove.events.loaded' : [{
-                timestamp : moment().valueOf(),
-                value : '1'
-            }]
+            'stove.events.loaded' : [ buildEvent() ]
         }];
         $http.post(postUrl, data).then(function(result) {
-        console.log('# Loaded ! >>', result);
+            jQuery($event.target).button('reset');
+            console.log('# Loaded ! >>', result);
         });
     };
       
-      $scope.started = function() {
-            var data = [{
-                'stove.events.started' : [{
-                    timestamp : moment().valueOf(),
-                    value : '1'
-                }]
-            }];
-          $http.post(postUrl, data).then(function(result) {
+    $scope.started = function($event) {
+        jQuery($event.target).button('loading');
+        var data = [{
+            'stove.events.started' : [ buildEvent() ]
+        }];
+        $http.post(postUrl, data).then(function(result) {
+            jQuery($event.target).button('reset');
             console.log('# Started ! >>', result);
-          });
-      };
+        });
+    };
       
-      $scope.stopped = function() {
-            var data = [{
-                'stove.events.stopped' : [{
-                    timestamp : moment().valueOf(),
-                    value : '1'
-                }]
-            }];
-          $http.post(postUrl, data).then(function(result) {
+    $scope.stopped = function($event) {
+        jQuery($event.target).button('loading');
+        var data = [{
+            'stove.events.stopped' : [ buildEvent() ]
+        }];
+        $http.post(postUrl, data).then(function(result) {
+            jQuery($event.target).button('reset');
             console.log('# Stopped ! >>', result);
-          });
-      };
-    /*$http.get('/api/awesomeThings').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-    });*/
-}).directive('plop', function() {
+        });
+    };
+}).directive('datetimepicker', function() {
     return {
         restrict : 'E',
-        // template : 'PLop plop'
-        templateUrl: 'components/datetimepicker.html'
+        replace : true,
+        require : 'ng-model',
+        templateUrl: 'templates/datetimepicker.html',
+        link : function (scope, element, attrs, ngModelCtrl) {
+            // $(function(){
+                element.datetimepicker({
+                    language: 'fr'
+                });
+                element.on('change.dp', function (e) {
+                    console.log('Date:',e.date);
+                    scope.$apply(function () {
+                        ngModelCtrl.$setViewValue(e.date);
+                    });
+                });
+            // });
+        }
     };
 });

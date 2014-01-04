@@ -4,30 +4,41 @@
 
 <div class="container">
     <div class="row">
-        <div class="well well-dark">
-            <h3>Stove management</h3>
+        <div class="well">
+            <h3 class="text-muted">Stove management</h3>
             <br>
             <div class="row">
                 <div class="col-sm-4 text-center">
-                    <button class="btn btn-lg btn-info" ng-click="loaded()">Loaded</button>
+                    <p>
+                        <button class="btn btn-lg btn-info" data-loading-text="Sending..." ng-click="loaded($event)">Load</button>
+                    </p>
                 </div>
                 <div class="col-sm-4 text-center">
-                    <button class="btn btn-lg btn-success" ng-click="started()">Started</button>
+                    <p>
+                        <button class="btn btn-lg btn-success" data-loading-text="Sending..." ng-click="started($event)">Start</button>
+                    </p>
                 </div>
                 <div class="col-sm-4 text-center">
-                    <button class="btn btn-lg btn-danger" ng-click="stopped()">Stopped</button>
+                    <p>
+                        <button class="btn btn-lg btn-danger" data-loading-text="Sending..." ng-click="stopped($event)">Stop</button>
+                    </p>
                 </div>
             </div>
             <br>
+            <br>
+            <small>
+                <button type="button" class="btn btn-default btn-sm" data-toggle="collapse" data-target="#forceDate">
+                  <span class="glyphicon glyphicon-calendar" title="Force date"></span>
+                </button>
+            </small>
+            <br>
+            <br>
             <div class="row">
-                <div class="col-sm-offset-2 col-sm-8">
+                <div id="forceDate" class="col-sm-offset-2 col-sm-8 collapse">
                     <div class="panel panel-default">
-                      <div class="panel-body">
-                        Force date:
-                        <plop></plop>
-                        <div plop></div>
-                        kkk
-                      </div>
+                        <div class="panel-body">
+                            <datetimepicker ng-model="forceDate"></datetimepicker>
+                        </div>
                     </div>
                 </div>
             </div>
