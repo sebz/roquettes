@@ -18,7 +18,10 @@ angular.module('roquettesApp')
 
     var displayResult = function(action, time) {
         $scope.action = action;
-        $scope.time = time.format('Do MMMM YYYY, h:mm');
+        $scope.time = time.format('Do MMMM YYYY, HH:mm');
+        if ($scope.forceDate) {
+            $scope.time = $scope.forceDate.format('Do MMMM YYYY, HH:mm');
+        }
     };
     $scope.loaded = function($event) {
         jQuery($event.target).button('loading');
