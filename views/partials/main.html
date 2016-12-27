@@ -1,28 +1,50 @@
 <div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">roquettes</h3>
+  <h3 class="text-muted">Roquettes</h3>
 </div>
 
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/5f583bc9.yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
-</div>
-
-<div class="row marketing">
-  <div ng-repeat="thing in awesomeThings">
-      <h4>{{thing.name}}</h4>
-      <p>{{thing.info}}</p>
-  </div>
-</div>
-
-<div class="footer">
-  <p>♥ from the Yeoman team</p>
+<div class="container">
+    <div class="row">
+        <div class="well">
+            <h3 class="text-muted">Stove management</h3>
+            <br>
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <p>
+                        <button class="btn btn-lg btn-info" data-loading-text="Sending..." ng-click="loaded($event)">Load</button>
+                    </p>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <p>
+                        <button class="btn btn-lg btn-success" data-loading-text="Sending..." ng-click="started($event)">Start</button>
+                    </p>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <p>
+                        <button class="btn btn-lg btn-danger" data-loading-text="Sending..." ng-click="stopped($event)">Stop</button>
+                    </p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <small class="hidden-xs">
+                <button type="button" class="btn btn-default btn-sm" data-toggle="collapse" data-target="#forceDate">
+                  <span class="glyphicon glyphicon-calendar" title="Force date"></span>
+                </button>
+            </small>
+            <br>
+            <br>
+            <div class="row">
+                <div id="forceDate" class="col-sm-offset-2 col-sm-8 collapse">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <datetimepicker ng-model="forceDate"></datetimepicker>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-info">
+                <small><strong>{{action}}</strong> {{time}}</small>
+            </div>
+        </div>
+    </div>
 </div>
